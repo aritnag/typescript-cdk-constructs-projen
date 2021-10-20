@@ -1,13 +1,13 @@
 const { AwsCdkConstructLibrary } = require('projen');
 
 const project = new AwsCdkConstructLibrary({
-  author: 'Johannes Hansson',
-  authorAddress: 'johannes.hansson@husqvarnagroup.com',
+  author: 'Aritra Nag ',
+  authorAddress: 'aritranag89@gmail.com',
   cdkVersion: '1.85.0',
   defaultReleaseBranch: 'master',
   name: '@hqv-cdk/hqv-patterns',
-  repositoryUrl: 'git@ssh.dev.azure.com:v3/HQV-DS/CAD-Internal/cdk-construct-patterns',
-  npmRegistryUrl: 'https://husqvarnadss.jfrog.io/artifactory/api/npm/npm-local/',
+  repositoryUrl: 'git@github.com:aritnag/typescript-cdk-construct.git',
+  npmRegistryUrl: 'https://demo.jfrog.io/artifactory/api/npm/npm-local/',
   npmDistTag: 'latest',
   cdkDependencies: [
     '@aws-cdk/core',

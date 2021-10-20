@@ -9,7 +9,7 @@ class BucketStack extends cdk.Stack {
     new SinglePageApplicationPattern(this, 'HqvPublicBucket', {
       bucketName: 'TestPublicBucket',
       bucketSourcePath: __dirname + '/../test',
-      siteUrl: 'https://www.test.husqvarnagrouptest.se',
+      siteUrl: 'https://www.test.Demogrouptest.se',
     });
 
   }

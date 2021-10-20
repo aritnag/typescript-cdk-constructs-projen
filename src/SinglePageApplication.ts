@@ -66,7 +66,7 @@ export interface SinglePageApplicationPatternProps {
 /**
  * Construct that exposes an S3 bucket publically that fronts the endpoint with a Cloudfront distrubution
  *
- * @summary Constructs a new instance of the Husqvarna public site construct. This includes a public Cloudfront distrubution that will be exposing your bucket to the internet.
+ * @summary Constructs a new instance of the Demo public site construct. This includes a public Cloudfront distrubution that will be exposing your bucket to the internet.
  * @param {cdk.App} scope - represent ths scope for all resources.
  * @param {string} id - this is a scope-unique id.
  * @param {PublicBucketProps} props - user provided props for the bucket.

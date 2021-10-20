@@ -201,7 +201,7 @@
       "description": "Publish this package to npm",
       "env": {
         "NPM_DIST_TAG": "latest",
-        "NPM_REGISTRY": "husqvarnadss.jfrog.io/artifactory/api/npm/npm-local/"
+        "NPM_REGISTRY": "demo.jfrog.io/artifactory/api/npm/npm-local/"
       },
       "requiredEnv": [
         "NPM_TOKEN"

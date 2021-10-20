@@ -2,7 +2,7 @@
   "name": "@hqv-cdk/hqv-patterns",
   "repository": {
     "type": "git",
-    "url": "git@ssh.dev.azure.com:v3/HQV-DS/CAD-Internal/cdk-construct-patterns"
+    "url": "git@github.com:aritnag/typescript-cdk-construct.git"
   },
   "scripts": {
     "clobber": "npx projen clobber",
@@ -28,8 +28,8 @@
     "projen": "npx projen"
   },
   "author": {
-    "name": "Johannes Hansson",
-    "email": "johannes.hansson@husqvarnagroup.com",
+    "name": "Aritra Nag ",
+    "email": "aritranag89@gmail.com",
     "organization": false
   },
   "devDependencies": {
@@ -83,7 +83,7 @@
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "publishConfig": {
-    "registry": "https://husqvarnadss.jfrog.io/artifactory/api/npm/npm-local/"
+    "registry": "https://demo.jfrog.io/artifactory/api/npm/npm-local/"
   },
   "version": "0.0.0",
   "jest": {

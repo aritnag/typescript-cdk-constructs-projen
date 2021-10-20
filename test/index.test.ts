@@ -7,14 +7,14 @@ test('Test public bucket', () => {
   // const stack = new cdk.Stack();
 
   // const testCert = new certManager.Certificate(stack, 'testCert', {
-  //   domainName: 'husqvarnagroup.test',
+  //   domainName: 'Demogroup.test',
   // });
 
   // new hqvS3.SinglePageApplicationPattern(stack, 'myTestBucket', {
   //   bucketName: 'myTestBucket',
   //   bucketSourcePath: __dirname + '/../test/',
   //   certificate: testCert,
-  //   siteUrl: 'https://www.test.husqvarnagrouptest.se',
+  //   siteUrl: 'https://www.test.Demogrouptest.se',
   // });
 
   // expectCDK(stack).to(haveResource('AWS::S3::Bucket'));

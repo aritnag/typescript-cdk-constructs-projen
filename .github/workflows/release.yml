@@ -80,7 +80,7 @@ jobs:
         run: npx -p jsii-release@latest jsii-release-npm
         env:
           NPM_DIST_TAG: latest
-          NPM_REGISTRY: husqvarnadss.jfrog.io/artifactory/api/npm/npm-local/
+          NPM_REGISTRY: demo.jfrog.io/artifactory/api/npm/npm-local/
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     container:
       image: jsii/superchain:1-buster-slim-node14
