@@ -1,0 +1,94 @@
+resources:
+  repositories:
+    - repository: core-templates
+      type: git
+      name: developer-experience/azure-pipeline-templates
+      ref: refs/tags/v0.0.28561
+
+# Variables used in this pipeline. Modify to your needs. Values will be reused in pipeline steps.
+variables:
+  appName: 'core-construct-patterns'
+  awsRegion: 'eu-west-1'                                # AWS Region where we operate in.
+  jfrogServiceConnection: 'jfrog-artifactory'
+
+  # Build Number. Used to track builds through to CloudFormation deployments.
+  buildNumber: "$(Build.SourceBranchName)-$(Build.BuildNumber)"
+
+  # Conditions and values based on the branch of the triggering repo
+  ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+    isPullRequest: true
+    awsServiceConnection: ${{ variables.awsServiceConnection_DEV }}
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    isMaster: true
+    awsServiceConnection: ${{ variables.awsServiceConnection_DEV }}
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/release/v') }}:
+    isRelease: true
+    awsServiceConnection: ${{ variables.awsServiceConnection_QA }}
+
+# Azure Pipelines build numbering format
+name: $(Date:yyyyMMdd)-$(Rev:rr)
+
+# Branches triggers
+trigger:
+  batch: true                         # trigger pipeline in batches and not on every push
+  branches:                           # branch names which will trigger a build
+    include:
+      - master
+      - release/v*
+
+# Multi-Stage YAML pipeline. We use job-level templates to keep the pipeline DRY.
+stages:
+
+  - stage: Build
+    displayName: 'Build'
+    jobs:
+      - job: cdkBuild
+        displayName: "Build CDK project"
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: 'Install Node.js'
+
+          - task: ArtifactoryNpm@2
+            displayName: 'NPM install'
+            inputs:
+              command: 'ci'
+              artifactoryService: $(jfrogServiceConnection)
+              sourceRepo: 'npm'
+
+
+          - task: Npm@1
+            displayName: 'NPM  projen release'
+            inputs:
+              command: 'custom'
+              customCommand: 'run release'
+
+
+
+          - task: ArtifactoryGenericUpload@2
+            displayName: 'Publish NPM artifacts'
+            inputs:
+              artifactoryService: 'jfrog-artifactory'
+              specSource: 'taskConfiguration'
+              fileSpec: |
+                {
+                  "files": [
+                    {
+                      "pattern": "dist/js/*",
+                      "target": "/npm-local/@hqv-cdk/hqv-patterns/"
+                    }
+                  ]
+                }
+              failNoOp: true
+
+
+
+          - task: PublishPipelineArtifact@1
+            displayName: 'Publish NPM artifacts'
+            inputs:
+              targetPath: 'dist'
+              artifact: 'dist'
+              publishLocation: pipeline
