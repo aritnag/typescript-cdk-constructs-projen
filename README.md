@@ -1,4 +1,5 @@
-We will be using the conventional commit standards for releasing any new changes. This version integrates with projen framework to bump/release a new version and also upload them in Azure devops repository.
+We will be using the conventional commit standards for releasing any new changes. 
+This version integrates with projen framework to bump/release a new version and also upload them in Azure devops repository.
 
 The commit contains the following structural elements, to communicate intent to the consumers of your library:
 
@@ -9,40 +10,9 @@ types  other than  fix:  and  feat:  are allowed, for example  @commitlint/confi
 footers  other than  BREAKING CHANGE: <description>  may be provided and follow a convention similar to  git trailer format.
 
 
+REF : https://www.conventionalcommits.org/en/v1.0.0/
+  
+JavaScript-based projects lately getting the bar ever so higher in terms of quality and tooling. Developers make use of an ever wider range of tools, services and standards. Compiling, testing, bundling, linting. Keeping up with those could be tedious.
 
-Examples
+Some, having faced this problem numerous times before, opted in for maintaining a boilerplate project to be cloned when creating a new project. We have used Projen framework in creating the building the constructs and this is one of the guide to create and contribute to the Golden path.
 
-Commit message with description and breaking change footer
-
-feat: allow provided config object to extend other configs
-
-BREAKING CHANGE: `extends` key in config file is now used for extending other config files
-Commit message with!to draw attention to breaking change
-
-refactor!: drop support for Node 6
-Commit message with scope and!to draw attention to breaking change
-
-refactor(runtime)!: drop support for Node 6
-Commit message with both!and BREAKING CHANGE footer
-
-refactor!: drop support for Node 6
-
-BREAKING CHANGE: refactor to use JavaScript features not available in Node 6.
-Commit message with no body
-
-docs: correct spelling of CHANGELOG
-Commit message with scope
-
-feat(lang): add polish language
-Commit message with multi-paragraph body and multiple footers
-
-fix: prevent racing of requests
-
-Introduce a request id and a reference to latest request. Dismiss
-incoming responses other than from latest request.
-
-Remove timeouts which were used to mitigate the racing issue but are
-obsolete now.
-
-Reviewed-by: Z
-Refs: #123
